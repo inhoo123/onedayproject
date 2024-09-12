@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model car_history {
+  car_no               Int       @id @default(autoincrement())
+  car_start_time       DateTime? @db.DateTime(0)
+  car_end_time         DateTime? @db.DateTime(0)
+  car_current_distance Int?
+  car_required_items   String?   @db.VarChar(255)
+  car_location         String?   @db.VarChar(100)
+}
+
+model tbl_roles {
+  r_username String    @db.VarChar(30)
+  r_role     String    @db.VarChar(20)
+  tbl_users  tbl_users @relation(fields: [r_username], references: [username], onDelete: Cascade, onUpdate: NoAction, map: "FK_USER")
+
+  @@id([r_username, r_role])
+}
+
+model tbl_student {
+  st_num   String  @id @db.VarChar(6)
+  st_name  String  @db.VarChar(20)
+  st_dept  String  @db.VarChar(20)
+  st_grade Int     @db.TinyInt
+  st_tel   String? @db.VarChar(20)
+  st_addr  String? @db.VarChar(125)
+}
+
+model tbl_users {
+  username  String      @id @db.VarChar(30)
+  password  String      @db.VarChar(255)
+  realname  String?     @db.VarChar(20)
+  email     String?     @db.VarChar(30)
+  nickname  String?     @db.VarChar(20)
+  tbl_roles tbl_roles[]
+}
