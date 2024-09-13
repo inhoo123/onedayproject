@@ -40,3 +40,21 @@ a {
     color-scheme: dark;
   }
 }
+/* page.module.css */
+
+.title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+main {
+  text-align: center;
+  display: contents;
+}
+ul {
+  display: flex;
+  list-style: none;
+  .li {
+    display: flex;
+  }
+}

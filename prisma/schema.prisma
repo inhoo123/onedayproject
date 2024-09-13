@@ -9,8 +9,8 @@ datasource db {
 
 model car_history {
   car_no               Int       @id @default(autoincrement())
-  car_start_time       DateTime? @db.DateTime(0)
-  car_end_time         DateTime? @db.DateTime(0)
+  car_start_time       DateTime? @db.Date
+  car_end_time         DateTime? @db.Date
   car_current_distance Int?
   car_required_items   String?   @db.VarChar(255)
   car_location         String?   @db.VarChar(100)
